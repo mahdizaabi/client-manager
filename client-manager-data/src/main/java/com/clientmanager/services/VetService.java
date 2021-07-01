@@ -1,6 +1,5 @@
 package com.clientmanager.services;
 
-import com.clientmanager.model.Pet;
 import com.clientmanager.model.Vet;
 
 import java.util.Set;
