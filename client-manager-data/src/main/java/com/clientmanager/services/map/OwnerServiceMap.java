@@ -3,9 +3,11 @@ package com.clientmanager.services.map;
 import com.clientmanager.model.Owner;
 import com.clientmanager.services.CrudService;
 import com.clientmanager.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
 
