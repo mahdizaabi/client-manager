@@ -23,13 +23,13 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Owner ownerx = new Owner();
         ownerx.setId(1L);
-        ownerx.setFirstName("Michel");
-        ownerx.setLastName("Weston");
+        ownerx.setFirstName("Patrice");
+        ownerx.setLastName("lumiére");
         ownerService.save(ownerx);
         Owner ownery = new Owner();
         ownery.setId(2L);
-        ownery.setFirstName("Michel");
-        ownery.setLastName("Weston");
+        ownery.setFirstName("Jean luc");
+        ownery.setLastName("catobre");
         ownerService.save(ownery);
         System.out.println("Loaded owners...");
         Vet vetx = new Vet();

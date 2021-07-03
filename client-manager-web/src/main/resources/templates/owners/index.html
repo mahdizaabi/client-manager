@@ -2,10 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Owner</title>
+    <title>Owners</title>
 </head>
 <body>
 <h1 th:text="'List of owners details'">Owner:</h1>
-
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owners}">
+        <td th:text="${owner?.id}"></td>
+        <td th:text="${owner?.firstName}"></td>
+        <td th:text="${owner?.getLastName()}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
