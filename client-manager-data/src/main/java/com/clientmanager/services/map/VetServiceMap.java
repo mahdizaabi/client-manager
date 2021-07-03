@@ -3,12 +3,13 @@ package com.clientmanager.services.map;
 import com.clientmanager.model.Pet;
 import com.clientmanager.model.Vet;
 import com.clientmanager.services.CrudService;
+import com.clientmanager.services.VetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
