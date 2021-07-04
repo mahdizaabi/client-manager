@@ -1,11 +1,11 @@
 package com.clientmanager.bootstrap;
 
 import com.clientmanager.model.Owner;
+import com.clientmanager.model.PetType;
 import com.clientmanager.model.Vet;
 import com.clientmanager.services.OwnerService;
+import com.clientmanager.services.PetTypeService;
 import com.clientmanager.services.VetService;
-import com.clientmanager.services.map.OwnerServiceMap;
-import com.clientmanager.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
@@ -39,6 +41,14 @@ public class DataLoader implements CommandLineRunner {
         vety.setLastName("Naughty");
         vetService.save(vety);
         System.out.println("Vet has been loaded");
+        PetType pettypex = new PetType();
+        pettypex.setName("bird");
+        this.petTypeService.save(pettypex);
+        PetType pettypey = new PetType();
+        pettypex.setName("Dog");
+        this.petTypeService.save(pettypey);
+        System.out.println("petype loaded");
+
 
     }
 }
