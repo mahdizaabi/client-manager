@@ -1,15 +1,12 @@
 package com.clientmanager.bootstrap;
 
-import com.clientmanager.model.Owner;
-import com.clientmanager.model.Pet;
-import com.clientmanager.model.PetType;
-import com.clientmanager.model.Vet;
-import com.clientmanager.services.OwnerService;
-import com.clientmanager.services.PetService;
-import com.clientmanager.services.PetTypeService;
-import com.clientmanager.services.VetService;
+import com.clientmanager.model.*;
+import com.clientmanager.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Component
@@ -18,16 +15,27 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final PetService petService;
+    private final VetSpecialityService vetSpecialityService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,PetService petService) {
+    public DataLoader(OwnerService ownerService,
+                      VetService vetService,
+                      PetTypeService petTypeService,
+                      PetService petService,
+                      VetSpecialityService vetSpecialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.petService = petService;
+        this.vetSpecialityService = vetSpecialityService;
     }
-
     @Override
     public void run(String... args) throws Exception {
+        int count = petTypeService.findAll().size();
+        if(count == 0 ){
+            loadData();
+        }
+    }
+    private void loadData() {
         Owner ownerx = new Owner();
         ownerx.setFirstName("Patrice");
         ownerx.setLastName("lumiére");
@@ -40,11 +48,9 @@ public class DataLoader implements CommandLineRunner {
         Vet vetx = new Vet();
         vetx.setFirstName("Clara");
         vetx.setLastName("Nasty");
-        vetService.save(vetx);
         Vet vety = new Vet();
         vety.setFirstName("Lisa");
         vety.setLastName("Naughty");
-        vetService.save(vety);
         System.out.println("Vet has been loaded");
         PetType pettypex = new PetType();
         pettypex.setName("bird");
@@ -63,5 +69,20 @@ public class DataLoader implements CommandLineRunner {
         System.out.println((long) ownerx.getPets().size());
         System.out.println(petService.findAll().size());
         System.out.println(petService.findById(1L).getName());
+
+        Speciality radiology = new Speciality();
+        radiology.setDescription("radiolgies and sacanning");
+
+        Speciality surgery = new Speciality();
+        surgery.setDescription("surgery and dentiste");
+        Speciality savedSpecRadiology = vetSpecialityService.save(radiology);
+        Speciality savedSpecSurgery = vetSpecialityService.save(surgery);
+        vetx.getSpecialities().add(savedSpecSurgery);
+        vety.getSpecialities().add(savedSpecRadiology);
+
+        vetService.save(vetx);
+        vetService.save(vety);
+
+
     }
 }
