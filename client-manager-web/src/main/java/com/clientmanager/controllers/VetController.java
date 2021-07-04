@@ -1,13 +1,9 @@
 package com.clientmanager.controllers;
-
-
 import com.clientmanager.model.Vet;
 import com.clientmanager.services.VetService;
-import com.clientmanager.services.map.VetServiceMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.Set;
 
 @Controller
@@ -19,8 +15,8 @@ public class VetController {
         this.vetService = vetService;
     }
 
-    @RequestMapping({"/vets", "/vets/index", "/vets/index.html"})
-    public String   getVets(Model model){
+    @RequestMapping({"/vets","/vets.html", "/vets/index", "/vets/index.html"})
+    public String getVets(Model model){
         Set<Vet> vetList = vetService.findAll();
         model.addAttribute("vetList", vetList);
         return "vets/index";
