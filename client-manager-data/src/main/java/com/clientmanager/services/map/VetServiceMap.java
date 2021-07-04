@@ -36,7 +36,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
                     Speciality persistedSpeciality = vetSpecialityService.save(speciality);
                     speciality.setId(persistedSpeciality.getId());
                 }else {
-                    System.out.println("Specialitie already persisted! --from VetServiceMap");
+                    System.out.println("speciality already persisted! --from VetServiceMap");
                 }
             });
         } else {
