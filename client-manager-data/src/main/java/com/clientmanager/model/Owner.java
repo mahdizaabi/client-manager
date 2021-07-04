@@ -1,9 +1,10 @@
 package com.clientmanager.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Owner extends Person{
-    private Set<Pet> pets;
+    private Set<Pet> pets  =new HashSet<Pet>();
     private String adresse;
     private String city;
     private String telephone;

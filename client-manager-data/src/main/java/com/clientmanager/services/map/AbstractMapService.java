@@ -3,7 +3,6 @@ package com.clientmanager.services.map;
 import com.clientmanager.model.BaseEntity;
 
 import java.util.*;
-
 public class AbstractMapService <T extends BaseEntity, ID extends Long>{
     protected Map<Long, T> map = new HashMap<>();
     Set<T> findAll() {

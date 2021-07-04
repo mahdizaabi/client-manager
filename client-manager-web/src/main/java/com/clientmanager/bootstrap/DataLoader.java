@@ -1,24 +1,29 @@
 package com.clientmanager.bootstrap;
 
 import com.clientmanager.model.Owner;
+import com.clientmanager.model.Pet;
 import com.clientmanager.model.PetType;
 import com.clientmanager.model.Vet;
 import com.clientmanager.services.OwnerService;
+import com.clientmanager.services.PetService;
 import com.clientmanager.services.PetTypeService;
 import com.clientmanager.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final PetService petService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,PetService petService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.petService = petService;
     }
 
     @Override
@@ -44,11 +49,19 @@ public class DataLoader implements CommandLineRunner {
         PetType pettypex = new PetType();
         pettypex.setName("bird");
         this.petTypeService.save(pettypex);
+
+        System.out.println("petype loaded");
         PetType pettypey = new PetType();
         pettypex.setName("Dog");
-        this.petTypeService.save(pettypey);
-        System.out.println("petype loaded");
-
-
+        Pet petx = new Pet();
+        petx.setName("Rexr");
+        petx.setPetType(pettypex);
+        ownerx.getPets().add(petx);
+        ownerService.save(ownerx);
+        System.out.println("final");
+        System.out.println("from run bean:");
+        System.out.println((long) ownerx.getPets().size());
+        System.out.println(petService.findAll().size());
+        System.out.println(petService.findById(1L).getName());
     }
 }
