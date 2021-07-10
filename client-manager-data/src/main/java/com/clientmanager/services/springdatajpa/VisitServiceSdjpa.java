@@ -4,6 +4,7 @@ import com.clientmanager.model.Visit;
 import com.clientmanager.repositories.VisitRepository;
 import com.clientmanager.services.VisitService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class VisitServiceSdjpa implements VisitService {
@@ -15,26 +16,28 @@ public class VisitServiceSdjpa implements VisitService {
 
     @Override
     public Set<Visit> findAll() {
-        return null;
+        Set<Visit> visitList = new HashSet<>();
+        visitRepository.findAll().forEach(visitList::add);
+        return visitList;
     }
 
     @Override
     public Visit findById(Long aLong) {
-        return null;
+        return visitRepository.findById(aLong).orElse(null);
     }
 
     @Override
     public Visit save(Visit object) {
-        return null;
+        return visitRepository.save(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-
+        visitRepository.deleteById(aLong);
     }
 
     @Override
     public void delete(Visit object) {
-
+        visitRepository.delete(object);
     }
 }
