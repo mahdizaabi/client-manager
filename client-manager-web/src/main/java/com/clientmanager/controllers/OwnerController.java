@@ -3,6 +3,7 @@ package com.clientmanager.controllers;
 
 import com.clientmanager.model.Owner;
 import com.clientmanager.services.OwnerService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

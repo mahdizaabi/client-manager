@@ -8,4 +8,5 @@ public interface OwnerRepository extends CrudRepository<Owner, Long> {
     //for tthis repositry on runtime
 
     //you may add some method Query here findByIdAndName (for example)
+    Owner findByLastName(String lastName);
 }
