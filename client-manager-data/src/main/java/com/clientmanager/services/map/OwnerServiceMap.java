@@ -3,11 +3,16 @@ package com.clientmanager.services.map;
 import com.clientmanager.model.Owner;
 import com.clientmanager.model.Pet;
 import com.clientmanager.services.OwnerService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
+//active when profile is default: no profile is set, or when profile is "map"
+@Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     final PetTypeServiceMapImplementaion petTypeService;
@@ -48,7 +53,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                         System.out.println(savedPet.getId());
                         pet.setId(savedPet.getId());
                         System.out.println(petServiceMap.findAll().size());
-
                     }
                 });
             }
@@ -66,5 +70,12 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public void delete(Owner object) {
         super.delete(object);
+    }
+    public Owner findByName(String name) {
+     return this.findAll()
+             .stream()
+             .filter(owner -> owner.getFirstName().equalsIgnoreCase(name))
+             .findFirst()
+             .orElse(null);
     }
 }

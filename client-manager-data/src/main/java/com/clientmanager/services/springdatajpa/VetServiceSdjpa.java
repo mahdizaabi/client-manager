@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@Profile("springDataJpa")
+@Profile("springdatajpa")
 public class VetServiceSdjpa implements VetService {
     private final VetRepository vetRepository;
 
@@ -47,4 +47,6 @@ public class VetServiceSdjpa implements VetService {
     public void delete(Vet object) {
         vetRepository.delete(object);
     }
+
+
 }

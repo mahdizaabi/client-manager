@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 @Service
-@Profile("springDataJpa")
+@Profile("springdatajpa")
 public class OwnerServiceSdjpa implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final PetRepository petRepository;
@@ -60,4 +60,8 @@ public class OwnerServiceSdjpa implements OwnerService {
         ownerRepository.delete(object);
 
     }
+    public Owner findByName(String name){
+        return new Owner();
+    }
+
 }

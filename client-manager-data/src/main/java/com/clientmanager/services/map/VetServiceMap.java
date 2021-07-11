@@ -4,12 +4,15 @@ import com.clientmanager.model.Speciality;
 import com.clientmanager.model.Vet;
 import com.clientmanager.services.VetService;
 import com.clientmanager.services.VetSpecialityService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
+
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     private final VetSpecialityService vetSpecialityService;
 

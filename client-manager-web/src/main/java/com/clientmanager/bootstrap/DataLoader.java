@@ -5,6 +5,7 @@ import com.clientmanager.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,17 +17,18 @@ public class DataLoader implements CommandLineRunner {
     private final PetTypeService petTypeService;
     private final PetService petService;
     private final VetSpecialityService vetSpecialityService;
-
+    private final VisitService visitService;
     public DataLoader(OwnerService ownerService,
                       VetService vetService,
                       PetTypeService petTypeService,
                       PetService petService,
-                      VetSpecialityService vetSpecialityService) {
+                      VetSpecialityService vetSpecialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.petService = petService;
         this.vetSpecialityService = vetSpecialityService;
+        this.visitService = visitService;
     }
     @Override
     public void run(String... args) throws Exception {
@@ -36,10 +38,7 @@ public class DataLoader implements CommandLineRunner {
         }
     }
     private void loadData() {
-        Owner ownerx = new Owner();
-        ownerx.setFirstName("Patrice");
-        ownerx.setLastName("lumiére");
-        ownerService.save(ownerx);
+
         Owner ownery = new Owner();
         ownery.setFirstName("Jean luc");
         ownery.setLastName("catobre");
@@ -51,7 +50,7 @@ public class DataLoader implements CommandLineRunner {
         Vet vety = new Vet();
         vety.setFirstName("Lisa");
         vety.setLastName("Naughty");
-        System.out.println("Vet has been loaded");
+
         PetType pettypex = new PetType();
         pettypex.setName("bird");
         this.petTypeService.save(pettypex);
@@ -59,11 +58,33 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("petype loaded");
         PetType pettypey = new PetType();
         pettypex.setName("Dog");
+        // create Pet and save it to the pet table
         Pet petx = new Pet();
+        petx.setName("petx");
+        PetType typex = new PetType();
+        typex.setName("typex");
+        petx.setPetType(typex);
+        //petService.save(petx);
+        /*** Create owner ***/
+        Owner ownerx = new Owner();
+        ownerx.setFirstName("Patrice");
+        ownerx.setLastName("lumiére");
+        //ownerService.save(ownerx);
+        Set<Pet> x = ownerx.getPets();
+        x.add(petx);
+        ownerx.setPets(x);
+        petx.setOwner(ownerx);
+        ownerService.save(ownerx);
+
+        Visit visitx = new Visit();
+        visitx.setDate(LocalDate.now());
+        visitx.setPet(petx);
+        petx.getVisits().add(visitx);
+        visitx.setDescription("x visit at monday was good.");
+        visitService.save(visitx);
         petx.setName("Rexr");
         petx.setPetType(pettypex);
         ownerx.getPets().add(petx);
-        ownerService.save(ownerx);
         System.out.println("final");
         System.out.println("from run bean:");
         System.out.println((long) ownerx.getPets().size());
@@ -82,6 +103,8 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(vetx);
         vetService.save(vety);
+        System.out.println("Test_Test_Test_Test");
+        System.out.println(petService.findById(1L).getOwner().getFirstName());
 
 
     }

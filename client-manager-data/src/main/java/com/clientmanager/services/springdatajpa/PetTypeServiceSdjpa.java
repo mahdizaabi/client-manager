@@ -6,12 +6,14 @@ import com.clientmanager.model.PetType;
 import com.clientmanager.repositories.PetTypeRepository;
 import com.clientmanager.services.PetService;
 import com.clientmanager.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Profile("springdatajpa")
 public class PetTypeServiceSdjpa implements PetTypeService {
     private final PetTypeRepository petTypeRepository;
 

@@ -2,9 +2,13 @@ package com.clientmanager.services.map;
 
 import com.clientmanager.model.Visit;
 import com.clientmanager.services.VisitService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
+@Profile({"default", "map"})
 public class VisitServiceMapImplementation extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {
@@ -18,9 +22,7 @@ public class VisitServiceMapImplementation extends AbstractMapService<Visit, Lon
 
     @Override
     public Visit save(Visit object) {
-        if (object.getPet() == null || object.getPet().getOwner() == null ||
-                object.getPet().getOwner().getId() == null || object.getPet().getId() == null)
-            throw new RuntimeException("missing data");
+
         return super.save(object);
     }
 

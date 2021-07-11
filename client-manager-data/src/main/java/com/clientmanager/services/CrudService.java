@@ -1,6 +1,8 @@
 package com.clientmanager.services;
 
 
+import com.clientmanager.model.Owner;
+
 import java.util.Set;
 
 public interface CrudService<T, ID> {
@@ -9,4 +11,5 @@ public interface CrudService<T, ID> {
     T save(T object);
     void deleteById(ID id);
     void delete(T object);
+
 }

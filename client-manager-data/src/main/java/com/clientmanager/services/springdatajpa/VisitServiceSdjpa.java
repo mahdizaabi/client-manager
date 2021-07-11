@@ -3,10 +3,13 @@ package com.clientmanager.services.springdatajpa;
 import com.clientmanager.model.Visit;
 import com.clientmanager.repositories.VisitRepository;
 import com.clientmanager.services.VisitService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
+@Profile("springdatajpa")
 public class VisitServiceSdjpa implements VisitService {
     private final VisitRepository visitRepository;
 
