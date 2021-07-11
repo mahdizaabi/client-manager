@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/mahdizaabi/client-manager/tree/main.svg?style=svg)](https://circleci.com/gh/mahdizaabi/client-manager/tree/main)
-
+[![CircleCI](https://circleci.com/gh/mahdizaabi/client-manager/tree/main.svg?style=svg&circle-token=053ebb2a963954332d0b8fbef702d763ce2229f9)](https://circleci.com/gh/mahdizaabi/client-manager/tree/main)
 ```
 
   _____            _             _                 _   
