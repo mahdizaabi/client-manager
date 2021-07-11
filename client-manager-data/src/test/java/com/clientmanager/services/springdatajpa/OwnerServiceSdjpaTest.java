@@ -42,7 +42,6 @@ class OwnerServiceSdjpaTest {
     void setUp() {
         this.owner = new Owner();
         this.owner.setId(12L);
-
     }
 
     @Test
@@ -92,6 +91,4 @@ class OwnerServiceSdjpaTest {
         ownerService.delete(this.owner);
         verify(ownerRepository).delete(any());
     }
-
-
 }
