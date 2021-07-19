@@ -1,7 +1,6 @@
 package com.clientmanager.model;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +26,7 @@ public class Pet extends BaseEntity{
     private Owner owner;
 
     @Column(name = "birth_date")
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     public Set<Visit> getVisits() {
         return visits;
@@ -48,8 +47,8 @@ public class Pet extends BaseEntity{
         this.owner = owner;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthdate) {
+        this.birthDate = birthdate;
     }
 
     public PetType getPetType() {
@@ -60,8 +59,8 @@ public class Pet extends BaseEntity{
         return owner;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
     public String getName() {

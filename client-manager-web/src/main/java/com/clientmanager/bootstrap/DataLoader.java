@@ -42,7 +42,29 @@ public class DataLoader implements CommandLineRunner {
         Owner ownery = new Owner();
         ownery.setFirstName("Jean luc");
         ownery.setLastName("catobre");
+        ownery.setAdresse("Paris sur mer");
+        ownery.setTelephone("Paris");
+        ownery.setTelephone("454548484");
+        ownery.setCity("Paris");
+        //pet
         ownerService.save(ownery);
+
+        Pet pety = new Pet();
+        pety.setId(14L);
+
+        pety.setOwner(ownery);
+        pety.setName("lolo");
+        pety.setBirthDate(LocalDate.now());
+        PetType pettypex = new PetType();
+        pettypex.setName("bird");
+        Set<Pet> pets = new HashSet<>();
+        pety.setId(1818L);
+        this.petService.save(pety);
+
+        pets.add(pety);
+        ownery.setPets(pets);
+        this.petTypeService.save(pettypex);
+
         System.out.println("Loaded owners...");
         Vet vetx = new Vet();
         vetx.setFirstName("Clara");
@@ -51,9 +73,7 @@ public class DataLoader implements CommandLineRunner {
         vety.setFirstName("Lisa");
         vety.setLastName("Naughty");
 
-        PetType pettypex = new PetType();
-        pettypex.setName("bird");
-        this.petTypeService.save(pettypex);
+
 
         System.out.println("petype loaded");
         PetType pettypey = new PetType();
