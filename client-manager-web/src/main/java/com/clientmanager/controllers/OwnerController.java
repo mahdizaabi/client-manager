@@ -48,8 +48,6 @@ public class OwnerController {
     @GetMapping()
     public String processIncomingRequestToFindOwnerOrOwners(Owner owner, BindingResult result,
                                                            Model model){
-        System.out.println(owner.getLastName());
-
         if(owner.getLastName() == null) {
              owner.setLastName("");
         }

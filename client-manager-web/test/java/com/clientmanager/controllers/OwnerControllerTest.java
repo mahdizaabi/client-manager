@@ -46,7 +46,7 @@ class OwnerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/owners"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/index"))
+                .andExpect(view().name("owners/ownersList"))
                 .andExpect(model().attribute("owners", hasSize(2)));
         //Check service has been called by the controller
         verify(ownerService).findAll();
@@ -57,7 +57,7 @@ class OwnerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/owners/find"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("notImplemented"));
+                .andExpect(view().name("owners/findOwners"));
         verifyNoInteractions(ownerService);
     }
     @Test
@@ -82,9 +82,27 @@ class OwnerControllerTest {
                 .andExpect(model().attribute("owner", notNullValue()));
     }
     @Test
+    void findOwnersBasedOnName() throws Exception {
+        Owner ownerx = new Owner();
+        ownerx.setId(14L);
+        Set<Owner> singleOwner = new HashSet<>();
+        singleOwner.add(ownerx);
+        Set<Owner> emptySet = new HashSet<>();
+
+        when(ownerService.findAllByLastName(anyString())).thenReturn(emptySet);
+
+        when(ownerService.findAll()).thenReturn(singleOwner);
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attribute("owner", notNullValue()));
+    }
+    @Test
     void findOwnerBasedOnName() throws Exception {
         Owner ownerx = new Owner();
         ownerx.setId(14L);
+        Owner ownery = new Owner();
+        ownery.setId(12L);
         Set<Owner> singleOwner = new HashSet<>();
         singleOwner.add(ownerx);
         when(ownerService.findAllByLastName(anyString())).thenReturn(singleOwner);
@@ -92,21 +110,6 @@ class OwnerControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/14"))
                 .andExpect(model().attribute("owner", notNullValue()));
-    }
-    @Test
-    void findOwnersBasedOnName() throws Exception {
-        Owner ownerx = new Owner();
-        ownerx.setId(14L);
-        Owner ownery = new Owner();
-        ownery.setId(12L);
-        Set<Owner> singleOwner = new HashSet<>();
-        singleOwner.add(ownerx);
-        singleOwner.add(ownery);
-        when(ownerService.findAllByLastName(anyString())).thenReturn(singleOwner);
-        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("owners/ownersList"))
-                .andExpect(model().attribute("selections", hasSize(2)));
     }
 
 }
