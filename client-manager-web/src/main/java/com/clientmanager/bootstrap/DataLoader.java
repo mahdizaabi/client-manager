@@ -56,14 +56,16 @@ public class DataLoader implements CommandLineRunner {
         pety.setName("lolo");
         pety.setBirthDate(LocalDate.now());
         PetType pettypex = new PetType();
+
         pettypex.setName("bird");
+        pety.setPetType(pettypex);
         Set<Pet> pets = new HashSet<>();
         pety.setId(1818L);
         this.petService.save(pety);
 
         pets.add(pety);
         ownery.setPets(pets);
-        this.petTypeService.save(pettypex);
+        //this.petTypeService.save(pettypex);
 
         System.out.println("Loaded owners...");
         Vet vetx = new Vet();
