@@ -42,7 +42,7 @@ public class DataLoader implements CommandLineRunner {
         Owner ownery = new Owner();
         ownery.setFirstName("Jean luc");
         ownery.setLastName("catobre");
-        ownery.setAdresse("Paris sur mer");
+        ownery.setAddress("Paris sur mer");
         ownery.setTelephone("Paris");
         ownery.setTelephone("454548484");
         ownery.setCity("Paris");

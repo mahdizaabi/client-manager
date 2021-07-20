@@ -1,7 +1,5 @@
 package com.clientmanager.model;
 
-import lombok.*;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +10,7 @@ import java.util.Set;
 public class Owner extends Person{
 
     @Column(name= "adresse")
-    private String adresse;
+    private String address;
     @Column(name="city")
     private String city;
     @Column(name="telephone")
@@ -21,12 +19,12 @@ public class Owner extends Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets  = new HashSet<>();
 
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAddress(String adresse) {
+        this.address = adresse;
     }
 
     public String getCity() {
